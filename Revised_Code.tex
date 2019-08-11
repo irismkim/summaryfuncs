@@ -1,0 +1,2217 @@
+\documentclass[12pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+    \setmainfont[]{Times New Roman}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[left=.5in,right=.5in,top=1in,bottom=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfauthor={; ; ; ;},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{\vspace{2in}Analysis for the FUN Study\(\colon\) Readmissions Within 100
+Days}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{\vspace{.2in}\emph{17 July, 2019}}
+  \author{\emph{PI$\colon$ Rebecca L. Olin, MD, MSCE} \\ \emph{Associate Professor, Department of Medicine} \\ \vspace{.5in}\emph{Iris Kim} \\ \emph{Student Intern} \\ \emph{iris.kim2@ucsf.edu | minjeekim303@berkeley.edu}}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{\vspace{4in}}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{caption}
+\fancyhead[L]{\includegraphics[width=2cm]{UCSF_sig_navy_RGB.png}}
+\fancyhead[R]{\includegraphics[width=4cm]{UCSF_Diller_navy_RGB.png}}
+\fancyfoot[C]{Department of Epidemiology and Biostatistics, UCSF School of Medicine}
+\fancypagestyle{plain}{\pagestyle{fancy}}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+\captionsetup[table]{labelformat=empty}
+
+\pagebreak
+
+\section{Summary of Readmissions within 100
+days}\label{summary-of-readmissions-within-100-days}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-1}Summary of Readmissions Within 100 Days}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 147 & 0.537415 & 0.7961561 & 0 & 0 & 4\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-1}Summary of Readmissions Within 100 Days}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Readmissions & Frequency & \%\\
+\midrule
+0 & 90 & 61.224\\
+\rowcolor[HTML]{E3E5E7}  1 & 40 & 27.211\\
+2 & 13 & 8.844\\
+\rowcolor[HTML]{E3E5E7}  3 & 3 & 2.041\\
+4 & 1 & 0.680\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-1}Summary of Readmissions Within 100 Days (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Readmissions (2 Groups) & Frequency & \%\\
+\midrule
+No Readmission & 90 & 61.224\\
+\rowcolor[HTML]{E3E5E7}  Any Readmission & 57 & 38.776\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\section{Association Between Readmissions and Donor
+Type}\label{association-between-readmissions-and-donor-type}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-2}Summary of Donor Type}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Donor Type & Frequency & \%\\
+\midrule
+0 & 46 & 31.081\\
+\rowcolor[HTML]{E3E5E7}  1 & 64 & 43.243\\
+2 & 25 & 16.892\\
+\rowcolor[HTML]{E3E5E7}  3 & 5 & 3.378\\
+4 & 6 & 4.054\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  5 & 2 & 1.351\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-2}Summary of Donor Type (3 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Donor Type & Frequency & \%\\
+\midrule
+Matched Sibs & 46 & 31.081\\
+\rowcolor[HTML]{E3E5E7}  MUD & 89 & 60.135\\
+Others & 13 & 8.784\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-2}Summary of Readmissions by Donor Type (3 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Donor Type &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  Matched Sibs &  & 30 & 65.22 & 16 & 34.78 & 46 & 100\\
+MUD &  & 51 & 57.95 & 37 & 42.05 & 88 & 100\\
+\rowcolor[HTML]{E3E5E7}  Others &  & 9 & 69.23 & 4 & 30.77 & 13 & 100\\
+Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-2}Logistic Regression between Readmissions and Donor Type (3 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Donor Type (3 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+MUD vs Matched Sibs & 1.360 & 0.649 & 2.850 & 0.415\\
+\rowcolor[HTML]{E3E5E7}  Others vs Matched Sibs & 0.833 & 0.222 & 3.135 & 0.787\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\section{Association between Readmissions and Pre-Transplant Patient
+Related
+Characteristics}\label{association-between-readmissions-and-pre-transplant-patient-related-characteristics}
+
+\subsection{Sociodemographic}\label{sociodemographic}
+
+\subsubsection{Age}\label{age}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-3}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 61.26351 & 6.102705 & 50 & 62 & 76\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-3}Summary of Age (3 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Age (3 Groups) & Frequency & \%\\
+\midrule
+50-59 & 56 & 37.838\\
+\rowcolor[HTML]{E3E5E7}  60-69 & 78 & 52.703\\
+70+ & 14 & 9.459\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-3}Summary of Age (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Age (2 Groups) & Frequency & \%\\
+\midrule
+50-59 & 56 & 37.838\\
+\rowcolor[HTML]{E3E5E7}  60+ & 92 & 62.162\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-3}Summary of Readmissions by Age (3 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Age (3 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  50-59 &  & 37 & 67.27 & 18 & 32.73 & 55 & 100\\
+60-69 &  & 43 & 55.13 & 35 & 44.87 & 78 & 100\\
+\rowcolor[HTML]{E3E5E7}  70+ &  & 10 & 71.43 & 4 & 28.57 & 14 & 100\\
+Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-4}Logistic Regression between Readmissions and Age}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Age & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Age & 1.026 & 0.97 & 1.084 & 0.371\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-4}Logistic Regression between Readmissions and Age (3 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Age (3 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+60-69 vs 50-59 & 1.673 & 0.816 & 3.432 & 0.160\\
+\rowcolor[HTML]{E3E5E7}  70+ vs 50-59 & 0.822 & 0.227 & 2.984 & 0.766\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-4}Summary of Readmissions by Age (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Age (2 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  50-59 &  & 37 & 67.27 & 18 & 32.73 & 55 & 100\\
+60+ &  & 53 & 57.61 & 39 & 42.39 & 92 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-4}Logistic Regression between Readmissions and Age (2 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Age (2 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  60+ vs 50-59 & 1.513 & 0.752 & 3.042 & 0.246\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{Gender}\label{gender}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-5}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Gender & Frequency & \%\\
+\midrule
+Male & 90 & 60.811\\
+\rowcolor[HTML]{E3E5E7}  Female & 58 & 39.189\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-5}Summary of Readmissions by Gender}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Gender &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  Male &  & 54 & 60.67 & 35 & 39.33 & 89 & 100\\
+Female &  & 36 & 62.07 & 22 & 37.93 & 58 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-5}Logistic Regression between Readmissions and Gender}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Gender & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Female vs Male & 0.943 & 0.478 & 1.861 & 0.865\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{Living Alone}\label{living-alone}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-6}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Living Status & Frequency & \%\\
+\midrule
+Not Living Alone & 134 & 90.541\\
+\rowcolor[HTML]{E3E5E7}  Living Alone & 14 & 9.459\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-6}Summary of Readmissions by Living Status}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Living Status &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  Not Living Alone &  & 84 & 63.16 & 49 & 36.84 & 133 & 100\\
+Living Alone &  & 6 & 42.86 & 8 & 57.14 & 14 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-6}Logistic Regression between Readmissions and Living Status}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Living Status & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Living Alone vs Not Living Alone & 2.286 & 0.749 & 6.975 & 0.146\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{Marital Status}\label{marital-status}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-7}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 1.351351 & 0.8949204 & 0 & 1 & 4\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-7}Summary of Marital Status}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Marital Status & Frequency & \%\\
+\midrule
+0 & 6 & 4.054\\
+\rowcolor[HTML]{E3E5E7}  1 & 115 & 77.703\\
+2 & 1 & 0.676\\
+\rowcolor[HTML]{E3E5E7}  3 & 21 & 14.189\\
+4 & 5 & 3.378\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-7}Summary of Marital Status (2 Groups)}
+\centering
+\begin{threeparttable}
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Marital Status (2 Groups) & Frequency & \%\\
+\midrule
+Others & 33 & 22.297\\
+\rowcolor[HTML]{E3E5E7}  Married & 115 & 77.703\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item \underline{\textit{Note:}} 
+\item Others (0,2,3,4,9), Married (1)
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-8}Summary of Readmissions by Marital Status (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Marital Status (2 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  Others &  & 17 & 53.12 & 15 & 46.88 & 32 & 100\\
+Married &  & 73 & 63.48 & 42 & 36.52 & 115 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-8}Logistic Regression between Readmissions and Marital Status (2 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Marital Status (2 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Married vs Others & 0.652 & 0.296 & 1.439 & 0.29\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{Education}\label{education}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-9}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 4.554054 & 1.903394 & 1 & 5 & 7\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-9}Summary of Education}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Education & Frequency & \%\\
+\midrule
+1 & 5 & 3.378\\
+\rowcolor[HTML]{E3E5E7}  2 & 20 & 13.514\\
+3 & 31 & 20.946\\
+\rowcolor[HTML]{E3E5E7}  4 & 13 & 8.784\\
+5 & 28 & 18.919\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  6 & 13 & 8.784\\
+7 & 38 & 25.676\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-9}Summary of Education (3 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Education (3 Groups) & Frequency & \%\\
+\midrule
+High School & 25 & 16.892\\
+\rowcolor[HTML]{E3E5E7}  College & 72 & 48.649\\
+Post College & 51 & 34.459\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-9}Summary of Readmissions by Education (3 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Education (3 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  High School &  & 15 & 60 & 10 & 40 & 25 & 100\\
+College &  & 44 & 61.97 & 27 & 38.03 & 71 & 100\\
+\rowcolor[HTML]{E3E5E7}  Post College &  & 31 & 60.78 & 20 & 39.22 & 51 & 100\\
+Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-10}Logistic Regression between Readmissions and Education (3 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Education (3 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+College vs High School & 0.920 & 0.362 & 2.339 & 0.862\\
+\rowcolor[HTML]{E3E5E7}  Post College vs High School & 0.968 & 0.364 & 2.573 & 0.948\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsection{Baseline GA Variables}\label{baseline-ga-variables}
+
+\subsubsection{IADL}\label{iadl}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-11}Summary of Readmissions}
+\centering
+\begin{threeparttable}
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 142 & 0.9507042 & 1.747653 & 0 & 0 & 10\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item \underline{\textit{Note}} 
+\item 0=Best; 14=Worst
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-11}Summary of IADL Scores (2 Groups)}
+\centering
+\begin{threeparttable}
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+IADL & Frequency & \%\\
+\midrule
+No Deficit & 87 & 60.839\\
+\rowcolor[HTML]{E3E5E7}  Any Deficit & 56 & 39.161\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item \underline{\textit{Note:}} 
+\item No Deficit (n=87); Any Deficit (n=56)
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-11}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 142 & 0.8661972 & 1.454896 & 0 & 0 & 7\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-12}Summary of IADL Domains}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Domains with Deficits & Frequency & \%\\
+\midrule
+0 & 87 & 61.268\\
+\rowcolor[HTML]{E3E5E7}  1 & 27 & 19.014\\
+2 & 9 & 6.338\\
+\rowcolor[HTML]{E3E5E7}  3 & 6 & 4.225\\
+4 & 8 & 5.634\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  5 & 3 & 2.113\\
+6 & 1 & 0.704\\
+\rowcolor[HTML]{E3E5E7}  7 & 1 & 0.704\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-12}Summary of Readmissions by IADL Deficits}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+IADL Deficit &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  No Deficit &  & 54 & 62.79 & 32 & 37.21 & 86 & 100\\
+Any Deficit &  & 33 & 58.93 & 23 & 41.07 & 56 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 87 & 61.27 & 55 & 38.73 & 142 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-13}Logistic Regression between Readmissions and IADL Scores}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+IADL Score & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  IADL Score & 1.073 & 0.886 & 1.298 & 0.471\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-13}Logistic Regression between Readmissions and IADL Domains}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Deficit & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Any Deficit vs No Deficit & 1.176 & 0.591 & 2.342 & 0.644\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-13}Summary of Readmissions by IADL Domains}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+IADL Domains &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  1 &  & 54 & 62.79 & 32 & 37.21 & 86 & 100\\
+2 &  & 16 & 59.26 & 11 & 40.74 & 27 & 100\\
+\rowcolor[HTML]{E3E5E7}  3 &  & 7 & 77.78 & 2 & 22.22 & 9 & 100\\
+4 &  & 2 & 33.33 & 4 & 66.67 & 6 & 100\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  5 &  & 4 & 50 & 4 & 50 & 8 & 100\\
+6 &  & 2 & 66.67 & 1 & 33.33 & 3 & 100\\
+\rowcolor[HTML]{E3E5E7}  7 &  & 0 & 0 & 1 & 100 & 1 & 100\\
+8 &  & 1 & 100 & 0 & 0 & 1 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 86 & 60.99 & 55 & 39.01 & 141 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-14}Logistic Regression between Readmissions and IADL Domains}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+IADL Domains & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  IADL Domains & 1.087 & 0.864 & 1.368 & 0.476\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{MOS Physical Health / ADL}\label{mos-physical-health-adl}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-15}Summary of Readmissions}
+\centering
+\begin{threeparttable}
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 144 & 5.569444 & 5.000214 & 0 & 4 & 20\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item \underline{\textit{Note:}} 
+\item Original ADL Score: 0=Best, 20=Worst
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-15}Summary of ADL Scores (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+ADL Score (2 Groups) & Frequency & \%\\
+\midrule
+No Deficit & 17 & 11.565\\
+\rowcolor[HTML]{E3E5E7}  Any Deficit & 130 & 88.435\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-16}Summary of Readmissions}
+\centering
+\begin{threeparttable}
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 144 & 72.15278 & 25.00107 & 0 & 80 & 100\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item \underline{\textit{Note:}} 
+\item Transformed ADL Score=(100-5*Original Score)
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-16}Summary of Readmissions by Transformed ADL Scores (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Transformed ADL Score (2 Groups) & Frequency & \%\\
+\midrule
+<85 & 82 & 56.944\\
+\rowcolor[HTML]{E3E5E7}  >=85 & 62 & 43.056\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-17}Summary of Readmissions by ADL Scores}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+ADL Score &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  1 &  & 15 & 88.24 & 2 & 11.76 & 17 & 100\\
+2 &  & 12 & 57.14 & 9 & 42.86 & 21 & 100\\
+\rowcolor[HTML]{E3E5E7}  3 &  & 10 & 62.5 & 6 & 37.5 & 16 & 100\\
+4 &  & 3 & 37.5 & 5 & 62.5 & 8 & 100\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  5 &  & 8 & 61.54 & 5 & 38.46 & 13 & 100\\
+6 &  & 5 & 45.45 & 6 & 54.55 & 11 & 100\\
+\rowcolor[HTML]{E3E5E7}  7 &  & 6 & 85.71 & 1 & 14.29 & 7 & 100\\
+8 &  & 7 & 70 & 3 & 30 & 10 & 100\\
+\rowcolor[HTML]{E3E5E7}  9 &  & 1 & 100 & 0 & 0 & 1 & 100\\
+\addlinespace
+10 &  & 4 & 66.67 & 2 & 33.33 & 6 & 100\\
+\rowcolor[HTML]{E3E5E7}  11 &  & 4 & 66.67 & 2 & 33.33 & 6 & 100\\
+12 &  & 2 & 28.57 & 5 & 71.43 & 7 & 100\\
+\rowcolor[HTML]{E3E5E7}  13 &  & 1 & 20 & 4 & 80 & 5 & 100\\
+14 &  & 0 & 0 & 2 & 100 & 2 & 100\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  15 &  & 4 & 100 & 0 & 0 & 4 & 100\\
+16 &  & 0 & 0 & 2 & 100 & 2 & 100\\
+\rowcolor[HTML]{E3E5E7}  17 &  & 2 & 66.67 & 1 & 33.33 & 3 & 100\\
+18 &  & 1 & 50 & 1 & 50 & 2 & 100\\
+\rowcolor[HTML]{E3E5E7}  19 &  & 1 & 50 & 1 & 50 & 2 & 100\\
+\addlinespace
+Total &  & 86 & 60.14 & 57 & 39.86 & 143 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-17}Logistic Regression between Readmissions and ADL Scores}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Original ADL Score & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  ADL Score & 1.059 & 0.99 & 1.132 & 0.0977\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-17}Logistic Regression between Readmissions and ADL Scores (2 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+ADL Deficit & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Any Deficit vs No Deficit & 5.574 & 1.224 & 25.388 & 0.0263\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-18}Summary of Readmissions by Transformed ADL Scores}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Transformed ADL Score &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  1 &  & 1 & 50 & 1 & 50 & 2 & 100\\
+2 &  & 1 & 50 & 1 & 50 & 2 & 100\\
+\rowcolor[HTML]{E3E5E7}  3 &  & 2 & 66.67 & 1 & 33.33 & 3 & 100\\
+4 &  & 0 & 0 & 2 & 100 & 2 & 100\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  5 &  & 4 & 100 & 0 & 0 & 4 & 100\\
+6 &  & 0 & 0 & 2 & 100 & 2 & 100\\
+\rowcolor[HTML]{E3E5E7}  7 &  & 1 & 20 & 4 & 80 & 5 & 100\\
+8 &  & 2 & 28.57 & 5 & 71.43 & 7 & 100\\
+\rowcolor[HTML]{E3E5E7}  9 &  & 4 & 66.67 & 2 & 33.33 & 6 & 100\\
+\addlinespace
+10 &  & 4 & 66.67 & 2 & 33.33 & 6 & 100\\
+\rowcolor[HTML]{E3E5E7}  11 &  & 1 & 100 & 0 & 0 & 1 & 100\\
+12 &  & 7 & 70 & 3 & 30 & 10 & 100\\
+\rowcolor[HTML]{E3E5E7}  13 &  & 6 & 85.71 & 1 & 14.29 & 7 & 100\\
+14 &  & 5 & 45.45 & 6 & 54.55 & 11 & 100\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  15 &  & 8 & 61.54 & 5 & 38.46 & 13 & 100\\
+16 &  & 3 & 37.5 & 5 & 62.5 & 8 & 100\\
+\rowcolor[HTML]{E3E5E7}  17 &  & 10 & 62.5 & 6 & 37.5 & 16 & 100\\
+18 &  & 12 & 57.14 & 9 & 42.86 & 21 & 100\\
+\rowcolor[HTML]{E3E5E7}  19 &  & 15 & 88.24 & 2 & 11.76 & 17 & 100\\
+\addlinespace
+Total &  & 86 & 60.14 & 57 & 39.86 & 143 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-18}Logistic Regression between Readmissions and Transformed ADL Scores}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Transformed ADL Score & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Transformed ADL Score & 0.989 & 0.975 & 1.002 & 0.0977\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-18}Logistic Regression between Readmissions and Transformed ADL Scores (2 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Transformed ADL Score (2 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  >=85 vs <85 & 0.723 & 0.366 & 1.428 & 0.35\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{Falls in the Last 6
+Months}\label{falls-in-the-last-6-months}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-19}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 147 & 0.3673469 & 0.9442082 & 0 & 0 & 7\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-19}Summary of Falls}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Number of Falls & Frequency & \%\\
+\midrule
+0 & 116 & 78.912\\
+\rowcolor[HTML]{E3E5E7}  1 & 19 & 12.925\\
+2 & 8 & 5.442\\
+\rowcolor[HTML]{E3E5E7}  3 & 1 & 0.680\\
+4 & 1 & 0.680\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  5 & 1 & 0.680\\
+7 & 1 & 0.680\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-19}Summary of Falls (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Falls (2 Groups) & Frequency & \%\\
+\midrule
+No Falls & 116 & 78.912\\
+\rowcolor[HTML]{E3E5E7}  Any Falls & 31 & 21.088\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-20}Logistic Regression between Readmisions and Number of Falls}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Falls & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Falls & 1.043 & 0.736 & 1.477 & 0.814\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-20}Summary of Readmissions by Number of Falls (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Falls (2 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  No Falls &  & 75 & 64.66 & 41 & 35.34 & 116 & 100\\
+Any Falls &  & 14 & 46.67 & 16 & 53.33 & 30 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 89 & 60.96 & 57 & 39.04 & 146 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-20}Logistic Regression between Readmissions and Number of Falls (2 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Falls (2 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Any Falls vs No Falls & 2.091 & 0.928 & 4.709 & 0.0751\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{KPS}\label{kps}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-21}Summary of (Patient Assigned) Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 82.36486 & 14.81686 & 30 & 90 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-21}Summary of (Provider Assigned) Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 147 & 91.63265 & 10.13882 & 30 & 90 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-21}Summary of Readmissions by KPS Patients}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+KPS Patient (in 10 Units) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  1 &  & 0 & 0 & 1 & 100 & 1 & 100\\
+2 &  & 2 & 100 & 0 & 0 & 2 & 100\\
+\rowcolor[HTML]{E3E5E7}  3 &  & 1 & 50 & 1 & 50 & 2 & 100\\
+4 &  & 9 & 50 & 9 & 50 & 18 & 100\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  5 &  & 8 & 44.44 & 10 & 55.56 & 18 & 100\\
+6 &  & 17 & 68 & 8 & 32 & 25 & 100\\
+\rowcolor[HTML]{E3E5E7}  7 &  & 37 & 69.81 & 16 & 30.19 & 53 & 100\\
+8 &  & 16 & 57.14 & 12 & 42.86 & 28 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-21}Logistic Regression between Readmissions and KPS Patients}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+KPS Patient (in 10 Units) & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  KPS Patient & 0.879 & 0.703 & 1.099 & 0.257\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-22}Summary of Readmissions by KPS Providers}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+KPS Provider (in 10 Units) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  1 &  & 0 & 0 & 1 & 100 & 1 & 100\\
+2 &  & 0 & 0 & 1 & 100 & 1 & 100\\
+\rowcolor[HTML]{E3E5E7}  3 &  & 1 & 100 & 0 & 0 & 1 & 100\\
+4 &  & 1 & 50 & 1 & 50 & 2 & 100\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  5 &  & 12 & 70.59 & 5 & 29.41 & 17 & 100\\
+6 &  & 36 & 55.38 & 29 & 44.62 & 65 & 100\\
+\rowcolor[HTML]{E3E5E7}  7 &  & 39 & 66.1 & 20 & 33.9 & 59 & 100\\
+Total &  & 89 & 60.96 & 57 & 39.04 & 146 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-22}Logistic Regression between Readmissions and KPS Providers}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+KPS Provider (in 10 Units) & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  KPS Provider & 0.815 & 0.584 & 1.138 & 0.23\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{TUG (in seconds)}\label{tug-in-seconds}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-23}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 146 & 9.939041 & 5.202245 & 3.6 & 9 & 49.6\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-23}Logistic Regression between Readmissions and TUG}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+TUG & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  TUG & 0.988 & 0.924 & 1.057 & 0.729\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{Mental Health / MHI}\label{mental-health-mhi}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-24}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 79.19595 & 13.48956 & 40 & 80 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-24}Summary of MHI Scores (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+MHI Score (2 Groups) & Frequency & \%\\
+\midrule
+<=76 & 65 & 43.919\\
+\rowcolor[HTML]{E3E5E7}  >76 & 83 & 56.081\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-24}Logistic Regression between Readmissions and MHI Scores}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+MHI Score & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  MHI Score & 1.007 & 0.982 & 1.032 & 0.59\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-24}Summary of Readmisions by MHI Scores (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+MHI Score (2 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  <=76 &  & 39 & 60 & 26 & 40 & 65 & 100\\
+>76 &  & 51 & 62.2 & 31 & 37.8 & 82 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-24}Logistic Regrression between Readmissions and MHI Scores (2 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+MHI Score (2 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  >76 vs <=76 & 0.912 & 0.468 & 1.777 & 0.786\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{Cognition / BOMC}\label{cognition-bomc}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-25}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 2.662162 & 3.082878 & 0 & 2 & 14\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-25}Summary of BOMC Scores (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+BOMC Score (2 Groups) & Frequency & \%\\
+\midrule
+0-4 & 119 & 80.405\\
+\rowcolor[HTML]{E3E5E7}  >4 & 29 & 19.595\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-26}Logistic Regression between Readmissions and BOMC Scores}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+BOMC & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  BOMC Score & 0.988 & 0.887 & 1.101 & 0.826\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-26}Summary of Readmissions by BOMC Scores (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+BOMC (2 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  0-4 &  & 67 & 56.78 & 51 & 43.22 & 118 & 100\\
+>4 &  & 23 & 79.31 & 6 & 20.69 & 29 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-26}Logistic Regression between Readmissions and BOMC Scores (2 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+BOMC (2 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  >4 vs 0-4 & 0.343 & 0.13 & 0.904 & 0.0304\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-27}Logistic Regression between Readmissions and BOMC Scores (2 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+BOMC (2 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  >4 vs 0-4 & 0.343 & 0.13 & 0.904 & 0.0304\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{MOS Social Support}\label{mos-social-support}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-28}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 145 & 88.48591 & 18.83531 & 0 & 97.91667 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-28}Logistic Regression between Readmission and MOS}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+MOS Social Support & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  MOS & 0.994 & 0.977 & 1.011 & 0.488\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{Weight Change Over the Last 6
+Months}\label{weight-change-over-the-last-6-months}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-29}Summary of Readmissions}
+\centering
+\begin{threeparttable}
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 147 & -1.2057 & 8.266667 & -32.22222 & -0.8784773 & 46.67647\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item \underline{\textit{Note:}} 
+\item Weight changes recorded in percentages.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-29}Summary of BMI}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 26.93042 & 4.515824 & 16.52445 & 26.30136 & 44.96266\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-29}Logistic Regression between Readmissions and Weight Change}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Weight & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Weight Change & 1.001 & 0.961 & 1.043 & 0.949\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-29}Logistic Regression between Readmissions and BMI}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Weight & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  BMI & 0.99 & 0.919 & 1.065 & 0.78\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{Number of Medications}\label{number-of-medications}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-30}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 132 & 6.257576 & 5.694005 & 0 & 5 & 53\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-30}Logistic Regression between Readmissions and Number of Medications}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Number of Medications & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Number of Medications & 1.034 & 0.969 & 1.103 & 0.317\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsection{Baseline QOL}\label{baseline-qol}
+
+\subsubsection{FACT - BMT Physical Wellbeing
+Score}\label{fact---bmt-physical-wellbeing-score}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-31}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 147 & 6.109977 & 5.513733 & 0 & 4.666667 & 26\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-31}Logistic Regression between Readmissions and Physical Wellbeing Scores}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+BMT Physcial Wellbeing Score & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Score & 1.051 & 0.989 & 1.116 & 0.108\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{FACT - BMT Social Wellbeing
+Score}\label{fact---bmt-social-wellbeing-score}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-32}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 147 & 24.68707 & 4.098943 & 8.166667 & 26 & 28\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-32}Logistic Regression between Readmissions and Social Wellbeing Scores}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+BMT Social Wellbeing Score & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Score & 0.972 & 0.897 & 1.053 & 0.484\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{FACT - BMT Emotional Wellbeing
+Score}\label{fact---bmt-emotional-wellbeing-score}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-33}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 147 & 7.730612 & 3.429817 & 0 & 7 & 20\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-33}Logistic Regression between Readmissions and Emotional Wellbeing Scores}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+BMT Emotional Wellbeing Score & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Score & 0.941 & 0.85 & 1.042 & 0.245\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{FACT - BMT Functional Wellbeing
+Score}\label{fact---bmt-functional-wellbeing-score}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-34}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 18.82793 & 5.430438 & 0 & 18.6 & 28\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-34}Logistic Regression between Readmissions and Functional Wellbeing Scores}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+BMT Functional Wellbeing Score & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Score & 0.964 & 0.907 & 1.025 & 0.242\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsubsection{FACT - BMT Subscale}\label{fact---bmt-subscale}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-35}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 28.70496 & 5.352589 & 15 & 29 & 40\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-35}Logistic Regression between Readmissions and BMTS}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+BMTS & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  BMTS Subscale & 1.004 & 0.943 & 1.069 & 0.903\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\section{Association Between Readmissions and Pre-Transplant Disease
+Related
+Characteristics}\label{association-between-readmissions-and-pre-transplant-disease-related-characteristics}
+
+\subsection{HCT-CI}\label{hct-ci}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-36}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 1.986487 & 1.319588 & 0 & 2 & 7\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-36}Summary of HCT-CI Raw Scores}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+HCT-CI Raw Score & Frequency & \%\\
+\midrule
+0 & 19 & 12.838\\
+\rowcolor[HTML]{E3E5E7}  1 & 37 & 25.000\\
+2 & 44 & 29.730\\
+\rowcolor[HTML]{E3E5E7}  3 & 29 & 19.595\\
+4 & 16 & 10.811\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  5 & 1 & 0.676\\
+6 & 1 & 0.676\\
+\rowcolor[HTML]{E3E5E7}  7 & 1 & 0.676\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-36}Summary of HCT-CI Raw Scores (3 Groups)}
+\centering
+\begin{threeparttable}
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+HCT-CI Score & Frequency & \%\\
+\midrule
+0 & 19 & 12.838\\
+\rowcolor[HTML]{E3E5E7}  1-2 & 81 & 54.730\\
+3+ & 48 & 32.432\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item \underline{\textit{Note:}} 
+\item 1: Score=0; 2: Score=1-2; 3: Score=3+
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-37}Logistic Regression between Readmissions and HCT-CI Raw Scores}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+HCT-CI & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  HCT-CI Raw Score & 1.087 & 0.844 & 1.4 & 0.519\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-38}Summary of Readmissions by HCT-CI Raw Scores (3 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+HCT-CI (3 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  0 &  & 12 & 66.67 & 6 & 33.33 & 18 & 100\\
+1-2 &  & 48 & 59.26 & 33 & 40.74 & 81 & 100\\
+\rowcolor[HTML]{E3E5E7}  3+ &  & 30 & 62.5 & 18 & 37.5 & 48 & 100\\
+Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-38}Logistic Regression between Readmissions and HCT-CI Raw Scores (3 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+HCT-CI (3 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+1-2 vs 0 & 1.375 & 0.469 & 4.031 & 0.562\\
+\rowcolor[HTML]{E3E5E7}  3+ vs 0 & 1.200 & 0.383 & 3.756 & 0.754\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak 
+
+\subsection{Disease Status at
+Transplant}\label{disease-status-at-transplant}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-39}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Readmissions & 148 & 3.452703 & 2.881644 & 1 & 2 & 10\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-39}Summary of Disease Status}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Disease Status & Frequency & \%\\
+\midrule
+1 & 65 & 43.919\\
+\rowcolor[HTML]{E3E5E7}  2 & 19 & 12.838\\
+3 & 3 & 2.027\\
+\rowcolor[HTML]{E3E5E7}  4 & 13 & 8.784\\
+5 & 8 & 5.405\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  6 & 1 & 0.676\\
+7 & 25 & 16.892\\
+\rowcolor[HTML]{E3E5E7}  8 & 7 & 4.730\\
+10 & 7 & 4.730\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-39}Summary of Disease Status (2 Groups)}
+\centering
+\begin{threeparttable}
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Disease Status (2 Groups) & Frequency & \%\\
+\midrule
+CR1/PR1 & 78 & 55.319\\
+\rowcolor[HTML]{E3E5E7}  Others & 63 & 44.681\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item \underline{\textit{Note:}} 
+\item CR1/PR1 (n=78), Others (n=63), exclude Unknown and Other (9, 10)
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-39}Summary of Readmission by Disease Status (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Disease Status (2 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  CR1/PR1 &  & 44 & 57.14 & 33 & 42.86 & 77 & 100\\
+Others &  & 40 & 63.49 & 23 & 36.51 & 63 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 84 & 60 & 56 & 40 & 140 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-40}Logistic Regression between Readmissions and Disease Status (2 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Disease Status (2 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Others vs CR1/PR1 & 0.767 & 0.387 & 1.518 & 0.446\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak 
+
+\subsection{CIBMTR}\label{cibmtr}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-41}Summary of Readmissions}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 0.8513514 & 1.156848 & 0 & 0 & 9\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-41}Summary of CIBMTR}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+CIBMTR & Frequency & \%\\
+\midrule
+0 & 78 & 52.703\\
+\rowcolor[HTML]{E3E5E7}  1 & 26 & 17.568\\
+2 & 38 & 25.676\\
+\rowcolor[HTML]{E3E5E7}  3 & 5 & 3.378\\
+9 & 1 & 0.676\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-41}Summary of CIBMTR (2 Groups)}
+\centering
+\begin{threeparttable}
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+CIBMTR (2 Groups) & Frequency & \%\\
+\midrule
+Low & 78 & 54.93\\
+\rowcolor[HTML]{E3E5E7}  Intermediate/High & 64 & 45.07\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item \underline{\textit{Note:}} 
+\item Low (n=78); Intermediate/High (n=64); Exclude Other and Unknown (3, 9)
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-41}Summary of CIBMTR (3 Groups)}
+\centering
+\begin{threeparttable}
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+CIBMTR (3 Groups) & Frequency & \%\\
+\midrule
+Low & 78 & 54.930\\
+\rowcolor[HTML]{E3E5E7}  Intermediate & 26 & 18.310\\
+High & 38 & 26.761\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item \underline{\textit{Note:}} 
+\item Low (n=78); Intermediate (n=26); High (n=38); Exclude Other and Unknown (3, 9)
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-42}Summary of Readmissions by CIBMTR}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+CIBMTR &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  1 &  & 49 & 63.64 & 28 & 36.36 & 77 & 100\\
+2 &  & 15 & 57.69 & 11 & 42.31 & 26 & 100\\
+\rowcolor[HTML]{E3E5E7}  3 &  & 23 & 60.53 & 15 & 39.47 & 38 & 100\\
+4 &  & 2 & 40 & 3 & 60 & 5 & 100\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  5 &  & 1 & 100 & 0 & 0 & 1 & 100\\
+Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-42}Logistic Regression between Readmissions and CIBMTR}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+CIBMTR & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  CIBMTR & 1.025 & 0.77 & 1.363 & 0.867\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-43}Summary of Readmissions by CIBMTR (2 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+CIBMTR (2 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  Low &  & 49 & 63.64 & 28 & 36.36 & 77 & 100\\
+Intermediate/High &  & 38 & 59.38 & 26 & 40.62 & 64 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 87 & 61.7 & 54 & 38.3 & 141 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-43}Logistic Regression between Readmissions and CIBMTR (2 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+CIBMTR (2 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Intermediate/High vs Low & 1.197 & 0.606 & 2.367 & 0.604\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-43}Summary of Readmissions by CIBMTR (3 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+CIBMTR (3 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  Low &  & 49 & 63.64 & 28 & 36.36 & 77 & 100\\
+Intermediate &  & 15 & 57.69 & 11 & 42.31 & 26 & 100\\
+\rowcolor[HTML]{E3E5E7}  High &  & 23 & 60.53 & 15 & 39.47 & 38 & 100\\
+Total &  & 87 & 61.7 & 54 & 38.3 & 141 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-43}Logistic Regression between Readmissions and CIBMTR (3 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+CIBMTR (3 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+Intermediate vs Low & 1.283 & 0.519 & 3.176 & 0.589\\
+\rowcolor[HTML]{E3E5E7}  High vs Low & 1.141 & 0.513 & 2.538 & 0.746\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsection{Transplant Intensity}\label{transplant-intensity}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-44}Summary of Transplant Intensity}
+\centering
+\begin{threeparttable}
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Transplant Intensity & Frequency & \%\\
+\midrule
+Fully Ablative & 47 & 31.757\\
+\rowcolor[HTML]{E3E5E7}  Non-Myeloablative & 101 & 68.243\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item \underline{\textit{Note:}} 
+\item Fully Ablative: Intensity = 0, Non-Myeloablative: Intensity = 1
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-44}Summary of Readmissions by Transplant Intensity}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Transplant Intensity &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  Fully Ablative &  & 30 & 65.22 & 16 & 34.78 & 46 & 100\\
+Non-Myeloablative &  & 60 & 59.41 & 41 & 40.59 & 101 & 100\\
+\rowcolor[HTML]{E3E5E7}  Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-44}Logistic Regression between Readmission and Transplant Intensity}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Transplant Intensity & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Non-Myeloablative vs Fully Ablative & 1.281 & 0.62 & 2.646 & 0.503\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsection{Diagnosis}\label{diagnosis}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-45}Diagnosis}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{5cm}cccccc}
+\toprule
+  & n & Mean & Std & Min & Median & Max\\
+\midrule
+\rowcolor{white}  Number of Readmissions & 148 & 2.898649 & 2.375441 & 1 & 2 & 8\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-45}Summary of Diagnoses}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Diagnosis & Frequency & \%\\
+\midrule
+1 & 63 & 42.568\\
+\rowcolor[HTML]{E3E5E7}  2 & 14 & 9.459\\
+3 & 38 & 25.676\\
+\rowcolor[HTML]{E3E5E7}  4 & 8 & 5.405\\
+6 & 2 & 1.351\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  7 & 4 & 2.703\\
+8 & 19 & 12.838\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-45}Summary of Diagnoses (3 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}cc}
+\toprule
+Diagnosis (3 Groups) & Frequency & \%\\
+\midrule
+AML & 63 & 42.568\\
+\rowcolor[HTML]{E3E5E7}  Others & 47 & 31.757\\
+MDS & 38 & 25.676\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-46}Summary of Readmissions by Diagnoses}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Diagnosis &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  1 &  & 40 & 63.49 & 23 & 36.51 & 63 & 100\\
+2 &  & 7 & 53.85 & 6 & 46.15 & 13 & 100\\
+\rowcolor[HTML]{E3E5E7}  3 &  & 23 & 60.53 & 15 & 39.47 & 38 & 100\\
+4 &  & 4 & 50 & 4 & 50 & 8 & 100\\
+\addlinespace
+\rowcolor[HTML]{E3E5E7}  5 &  & 1 & 50 & 1 & 50 & 2 & 100\\
+6 &  & 2 & 50 & 2 & 50 & 4 & 100\\
+\rowcolor[HTML]{E3E5E7}  7 &  & 13 & 68.42 & 6 & 31.58 & 19 & 100\\
+Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-46}Logistic Regression between Readmissions and Diagnoses}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Diagnosis & OR & CI Lower & CI Upper & p value\\
+\midrule
+\rowcolor{white}  Diagnosis & 0.992 & 0.862 & 1.141 & 0.911\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-46}Summary of Readmissions by Diagnoses (3 Groups)}
+\centering
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}ccccccc}
+\toprule
+  & Readmissions & No Readmission & (\%) & Readmission & (\%) & Total & (\%)\\
+\midrule
+Diagnosis (3 Groups) &  &  &  &  &  &  & \\
+\rowcolor[HTML]{E3E5E7}  AML &  & 40 & 63.49 & 23 & 36.51 & 63 & 100\\
+Others &  & 27 & 58.7 & 19 & 41.3 & 46 & 100\\
+\rowcolor[HTML]{E3E5E7}  MDS &  & 23 & 60.53 & 15 & 39.47 & 38 & 100\\
+Total &  & 90 & 61.22 & 57 & 38.78 & 147 & 100\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-46}Logistic Regression between Readmissions and Diagnoses (3 Groups)}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+Diagnosis (3 Groups) & OR & CI Lower & CI Upper & p value\\
+\midrule
+Others vs AML & 1.224 & 0.561 & 2.668 & 0.612\\
+\rowcolor[HTML]{E3E5E7}  MDS vs AML & 1.134 & 0.495 & 2.597 & 0.766\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+
+\end{document}
