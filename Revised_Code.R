@@ -141,7 +141,7 @@ crosstable <- function(y, bygroup, bygroup.name=NULL, bygroup.labels=NULL, y.nam
 
 
 
-summaryTable <- function(y, bygroup, digit=3, table.title=NULL, caption_heading=NULL, caption=NULL, freq.tab=F,
+summaryTable <- function(data, y, bygroup, digit=3, table.title=NULL, caption_heading=NULL, caption=NULL, freq.tab=F,
                          y.name=NULL, y.labels=NULL, bygroup.name=NULL, bygroup.labels=NULL,
                          boxplot=F, boxplot.labelsize = 1, plot.title=NULL) {
   if (!missing(bygroup)){
@@ -175,6 +175,7 @@ summaryTable <- function(y, bygroup, digit=3, table.title=NULL, caption_heading=
   }
   if (nrow(m) == 1) {rowcolor = "white";num = 1}
   else {rowcolor = "#E3E5E7";num = 2}
+  attach(data)
   layout(matrix(c(1, 1, 2, 1)), 2, 1)
   m <- kable(m, align="c", "latex", booktabs=T, caption=table.title) %>%
     kable_styling(position='center', stripe_color = rowcolor, stripe_index = seq(num, nrow(m), 2),
