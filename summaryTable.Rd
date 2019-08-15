@@ -9,6 +9,9 @@ This function generates a type of summary table for the given data y. It can gen
 summaryTable(y, bygroup, digit = 3, table.title = NULL, caption_heading = NULL, caption = NULL, freq.tab = F, y.name = NULL, y.labels = NULL, bygroup.name = NULL, bygroup.labels = NULL, boxplot = F, boxplot.labelsize = 1, plot.title=NULL)
 }
 \arguments{
+    \item{data}{
+  The dataset.
+}
   \item{y}{
   The data which is to be summarized.
 }
